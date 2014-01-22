@@ -1,0 +1,7 @@
+#
+#Git ignores
+#
+
+*.autosave
+build-*
+*.pro.user
