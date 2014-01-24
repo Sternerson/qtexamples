@@ -38,7 +38,8 @@
 **
 ****************************************************************************/
 
-#include "foo.h"
+#include "calculator.h"
+#include "displaymodel.h"
 
 #include <QDir>
 #include <QGuiApplication>
@@ -70,9 +71,4 @@ int main(int argc, char* argv[])
         view.show();
     }
     return app.exec();
-}
-
-void main()
-{
-    return;
 }

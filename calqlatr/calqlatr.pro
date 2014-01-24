@@ -2,12 +2,10 @@ TEMPLATE = app
 
 QT += qml quick
 SOURCES += main.cpp \
-    foo.cpp \
     calculator.cpp \
     displaymodel.cpp
 
-RESOURCES += calqlatr.qrc \
-    ../../shared/shared.qrc
+RESOURCES += calqlatr.qrc
 
 OTHER_FILES = calqlatr.qml \
     content/Button.qml \

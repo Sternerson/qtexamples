@@ -41,7 +41,6 @@
 import QtQuick 2.0
 import "content"
 import "content/calculator.js" as CalcEngine
-import "foo.h" as Foo
 
 
 Rectangle {
