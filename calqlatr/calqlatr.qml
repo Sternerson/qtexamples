@@ -40,7 +40,7 @@
 
 import QtQuick 2.0
 import "content"
-import "content/calculator.js" as CalcEngine
+//import "content/calculator.js" as CalcEngine
 
 
 Rectangle {

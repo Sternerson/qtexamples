@@ -18,7 +18,7 @@ class DisplayItem
 {
 public:
     DisplayItem();
-    DisplayItem(QString value, bool isOperator);
+    DisplayItem(QString value, bool isOperator = false);
 
     QString value;
     bool isOperator;
@@ -41,9 +41,20 @@ public:
         kDisplayRoleIsOperator
     };
 
+    //Constructors
     explicit DisplayModel(QObject *parent = 0);
-
     DisplayModel(QList<DisplayItem> &items, QObject *parent);
+
+    //Members
+    void Digit(QChar digit);
+    void Number(double number);
+
+    void Operator(QChar op);
+
+    void NewLine();
+
+    void Clear();
+
 
 private:
     QList<DisplayItem> items;

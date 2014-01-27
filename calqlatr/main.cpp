@@ -45,14 +45,29 @@
 #include <QGuiApplication>
 #include <QQmlEngine>
 #include <QQmlFileSelector>
+#include <QQmlContext>
 #include <QQuickView> //Not using QQmlApplicationEngine because many examples don't have a Window{}
 
 int main(int argc, char* argv[])
 {
     QGuiApplication app(argc,argv);
-    app.setOrganizationName("Qt Project");
-    app.setOrganizationDomain("qt-project.org");
+    app.setOrganizationName("The Qts");
+    app.setOrganizationDomain("afconsult.com");
     app.setApplicationName(QFileInfo(app.applicationFilePath()).baseName());
+
+    //Seed model with dummy data
+    QList<DisplayItem> items;
+    items[0] = DisplayItem("5");
+    items[1] = DisplayItem("+", true);
+    items[2] = DisplayItem("5");
+    items[3] = DisplayItem("=", false);
+    items[4] = DisplayItem("7");
+
+    DisplayModel model(items, null);
+    Calculator calc;
+
+    //connect the calc and model
+
     QQuickView view;
     if (qgetenv("QT_QUICK_CORE_PROFILE").toInt()) {
         QSurfaceFormat f = view.format();
@@ -61,9 +76,16 @@ int main(int argc, char* argv[])
         view.setFormat(f);
     }
     view.connect(view.engine(), SIGNAL(quit()), &app, SLOT(quit()));
+    //Connect the view signals to calc here?
+
+
     new QQmlFileSelector(view.engine(), &view);
     view.setSource(QUrl("qrc:///" "demos/calqlatr/calqlatr" ".qml"));
     view.setResizeMode(QQuickView::SizeRootObjectToView);
+
+    QQmlContext *ctxt = view.rootContext();
+    ctxt->setContextProperty("displayModel", &model);
+
     if (QGuiApplication::platformName() == QLatin1String("qnx") ||
           QGuiApplication::platformName() == QLatin1String("eglfs")) {
         view.showFullScreen();

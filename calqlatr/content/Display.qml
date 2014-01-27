@@ -42,6 +42,8 @@ import QtQuick 2.0
 
 Item {
     id: display
+/*
+    //Should not be used, but may be good for reference until impl. is done
     property bool enteringDigits: false
 
     function displayOperator(operator)
@@ -75,7 +77,7 @@ Item {
             enteringDigits = false
         }
     }
-
+*/
     Item {
         id: theItem
         width: parent.width + 32
@@ -114,6 +116,7 @@ Item {
             x: 16; y: 30
             width: display.width
             height: display.height - 50 - y
+            model: displayModel
             delegate: Item {
                 height: 20
                 width: parent.width
@@ -132,7 +135,6 @@ Item {
                     text: model.operand
                 }
             }
-            model: ListModel { }
         }
 
     }
